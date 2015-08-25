@@ -1,6 +1,7 @@
 var canvas = document.getElementById('canvas'),
     ctx = canvas.getContext('2d'),
-    timeBetweenSprites = 1000; // measured in in milliseconds
+    timeBetweenSprites = 100, // measured in in milliseconds
+    direction = "forward";
 
 canvas.width = 400;
 canvas.height = 400;
@@ -21,9 +22,9 @@ spritesheet.onload = function() {
         endX = (startX+spriteWidth)%spritesheet.width,
         endY = (startY+spriteHeight)%spritesheet.height;
 
-    console.log("IMG: "+spritesheet);
-    console.log("width: "+spritesheet.width);
-    console.log("height: "+spritesheet.height);
+    // console.log("IMG: "+spritesheet);
+    // console.log("width: "+spritesheet.width);
+    // console.log("height: "+spritesheet.height);
 
     // Center the sprite on the canvas
     spritePositionX = canvas.width/2 - spriteWidth/2;
@@ -32,12 +33,23 @@ spritesheet.onload = function() {
     var drawSprite = function() {
         ctx.drawImage(spritesheet, startX, startY, endX, endY, spritePositionX, spritePositionY, spriteWidth, spriteHeight);
         // Move on to the next sprite
-        startX = (startX + spriteWidth)%spritesheet.width;
-        if (startX == 0){
-            startY = (startY + spriteHeight)%spritesheet.height;
+        if (direction === 'backward'){
+            startX = (startX - spriteWidth);
+            if (startX < 0){
+                startX = spritesheet.width;
+                startY = (startY - spriteHeight);
+            }
+            if (startY < 0){
+                startY = spritesheet.height;
+            }
+        } else { // direction === 'forward'
+            startX = (startX + spriteWidth)%spritesheet.width;
+            if (startX == 0){
+                startY = (startY + spriteHeight)%spritesheet.height;
+            }
         }
-        console.log('startX: '+startX);
-        console.log('startY: '+startY);
+        // console.log('startX: '+startX);
+        // console.log('startY: '+startY);
         setTimeout(drawSprite, timeBetweenSprites);
     }
 
@@ -45,5 +57,11 @@ spritesheet.onload = function() {
 }
 
 document.onmousemove = function (e){
+    var midPoint = window.innerWidth/2;
+    if (e.clientX < midPoint){
+        direction = "forward";
+    } else {
+        direction = "backward";
+    }
     timeBetweenSprites = e.clientX;
 }
