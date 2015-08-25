@@ -6,7 +6,7 @@ canvas.height = 400;
 
 // first figure out how big the spritesheet is (pixel dimensions)
 var spritesheet = new Image();
-spritesheet.src = "images/MuybridgeSpritesheet.gif";
+spritesheet.src = "images/MuybridgeSpritesheet.png";
 
 // onload waits until the image is loaded before trying to access it's attributes
 spritesheet.onload = function() {
@@ -33,4 +33,12 @@ spritesheet.onload = function() {
     }
 
     drawSprite();
+
+    // display only the cropped image
+    setTimeout(function(){
+        // call the horse
+        drawSprite();
+            // if horse state = horse image % 16 to loop around
+            // make sure to setTimeout at the end
+    }, 1000);
 }
