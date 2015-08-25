@@ -35,12 +35,10 @@ spritesheet.onload = function() {
         if (startX == 0){
             startY = (startY + spriteHeight)%spritesheet.height;
         }
+        console.log('startX: '+startX);
+        console.log('startY: '+startY);
         setTimeout(drawSprite, 1000);
     }
 
     drawSprite();
-
-    setTimeout(function(){
-        drawSprite();
-    }, 1000);
 }
