@@ -1,5 +1,6 @@
 var canvas = document.getElementById('canvas'),
-    ctx = canvas.getContext('2d');
+    ctx = canvas.getContext('2d'),
+    timeBetweenSprites = 1000; // measured in in milliseconds
 
 canvas.width = 400;
 canvas.height = 400;
@@ -37,8 +38,12 @@ spritesheet.onload = function() {
         }
         console.log('startX: '+startX);
         console.log('startY: '+startY);
-        setTimeout(drawSprite, 1000);
+        setTimeout(drawSprite, timeBetweenSprites);
     }
 
     drawSprite();
+}
+
+document.onmousemove = function (e){
+    timeBetweenSprites = e.clientX;
 }
