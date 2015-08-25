@@ -17,8 +17,8 @@ spritesheet.onload = function() {
     // State variables for drawing the sprite
     var startX = 0,
         startY = 0,
-        endX = spriteWidth,
-        endY = spriteHeight;
+        endX = (startX+spriteWidth)%spritesheet.width,
+        endY = (startY+spriteHeight)%spritesheet.height;
 
     console.log("IMG: "+spritesheet);
     console.log("width: "+spritesheet.width);
@@ -30,15 +30,17 @@ spritesheet.onload = function() {
 
     var drawSprite = function() {
         ctx.drawImage(spritesheet, startX, startY, endX, endY, spritePositionX, spritePositionY, spriteWidth, spriteHeight);
+        // Move on to the next sprite
+        startX = (startX + spriteWidth)%spritesheet.width;
+        if (startX == 0){
+            startY = (startY + spriteHeight)%spritesheet.height;
+        }
+        setTimeout(drawSprite, 1000);
     }
 
     drawSprite();
 
-    // display only the cropped image
     setTimeout(function(){
-        // call the horse
         drawSprite();
-            // if horse state = horse image % 16 to loop around
-            // make sure to setTimeout at the end
     }, 1000);
 }
