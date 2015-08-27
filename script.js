@@ -34,14 +34,10 @@ spritesheet.onload = function() {
         ctx.drawImage(spritesheet, startX, startY, endX, endY, spritePositionX, spritePositionY, spriteWidth, spriteHeight);
         // Move on to the next sprite
         if (direction === 'backward'){
-            startX = (startX - spriteWidth);
-            if (startX < 0){
-                startX = spritesheet.width;
-                startY = (startY - spriteHeight);
+            if (startX == 0){
+                startY = (startY - spriteHeight + spritesheet.height)%spritesheet.height;
             }
-            if (startY < 0){
-                startY = spritesheet.height;
-            }
+            startX = (startX - spriteWidth + spritesheet.width)%spritesheet.width;
         } else { // direction === 'forward'
             startX = (startX + spriteWidth)%spritesheet.width;
             if (startX == 0){
