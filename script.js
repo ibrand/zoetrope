@@ -62,7 +62,10 @@ document.getElementById("left").onmousemove = function (e){
 }
 
 document.getElementById("right").onmousemove = function (e){
+    divWidth = window.innerWidth/2;
     direction = "backward";
-    timeBetweenSprites = Math.abs(e.clientX-window.innerWidth/2);
+    // subtract x from the div width and you bring x back to 0 when its in the right div
+    // then subtract it from the div width again and take the absolute value, and the higher numbers go towards the middle
+    timeBetweenSprites = Math.abs(divWidth*2-e.clientX);
 }
 
