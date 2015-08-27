@@ -22,10 +22,6 @@ spritesheet.onload = function() {
         endX = (startX+spriteWidth)%spritesheet.width,
         endY = (startY+spriteHeight)%spritesheet.height;
 
-    // console.log("IMG: "+spritesheet);
-    // console.log("width: "+spritesheet.width);
-    // console.log("height: "+spritesheet.height);
-
     // Center the sprite on the canvas
     spritePositionX = canvas.width/2 - spriteWidth/2;
     spritePositionY = canvas.height/2 - spriteHeight/2;
@@ -44,8 +40,6 @@ spritesheet.onload = function() {
                 startY = (startY + spriteHeight)%spritesheet.height;
             }
         }
-        // console.log('startX: '+startX);
-        // console.log('startY: '+startY);
         setTimeout(drawSprite, timeBetweenSprites);
     }
 
