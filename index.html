@@ -11,10 +11,26 @@
             top: 0px;
             bottom:0px;
         }
+        #left {
+            position: absolute;
+            top: 0px;
+            width:50%;
+            height: 100%;
+
+        }
+        #right {
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            width:50%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
 <h1>Zoetrope</h1>
+<div id="left"></div>
+<div id="right"></div>
 <canvas id="canvas" width='400' height='400'></canvas>
 <script type="text/javascript" src="script.js"></script>
 </body>

@@ -56,12 +56,13 @@ spritesheet.onload = function() {
     drawSprite();
 }
 
-document.onmousemove = function (e){
-    var midPoint = window.innerWidth/2;
-    if (e.clientX < midPoint){
-        direction = "forward";
-    } else {
-        direction = "backward";
-    }
+document.getElementById("left").onmousemove = function (e){
+    direction = "forward";
     timeBetweenSprites = e.clientX;
 }
+
+document.getElementById("right").onmousemove = function (e){
+    direction = "backward";
+    timeBetweenSprites = Math.abs(e.clientX-window.innerWidth/2);
+}
+
