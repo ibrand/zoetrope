@@ -6,14 +6,16 @@ var canvas = document.getElementById('canvas'),
 canvas.width = 400;
 canvas.height = 400;
 
+spritesPerRow = 4;
+
 var spritesheet = new Image();
 spritesheet.src = "images/MuybridgeSpritesheet.png";
 
 // onload waits until the image is loaded before trying to access its attributes
 spritesheet.onload = function() {
-    // divide both dimensions by 4 to get the width and height of the individual sprites
-    var spriteWidth = spritesheet.width/4;
-    var spriteHeight = spritesheet.height/4;
+    // divide both dimensions by spritesPerRow to get the width and height of the individual sprites
+    var spriteWidth = spritesheet.width/spritesPerRow;
+    var spriteHeight = spritesheet.height/spritesPerRow;
 
     // state variables for drawing the sprite
     var startX = 0,
