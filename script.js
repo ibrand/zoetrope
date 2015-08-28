@@ -24,8 +24,8 @@ spritesheet.onload = function() {
         endY = startY+spriteHeight;
 
     // center the sprite on the canvas
-    spritePositionX = canvas.width/2 - spriteWidth/2;
-    spritePositionY = canvas.height/2 - spriteHeight/2;
+    var spritePositionX = canvas.width/2 - spriteWidth/2,
+        spritePositionY = canvas.height/2 - spriteHeight/2;
 
     var drawSprite = function() {
         ctx.drawImage(spritesheet, startX, startY, endX, endY, spritePositionX, spritePositionY, spriteWidth, spriteHeight);
@@ -53,7 +53,7 @@ document.getElementById("left").onmousemove = function (e){
 }
 
 document.getElementById("right").onmousemove = function (e){
-    divWidth = window.innerWidth/2;
+    var divWidth = window.innerWidth/2;
     direction = "backward";
     // subtract x from the div width and you bring x back to 0 when it's in the right div
     // then subtract it from the div width again and take the absolute value, and the higher numbers go towards the middle
