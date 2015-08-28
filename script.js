@@ -18,8 +18,8 @@ spritesheet.onload = function() {
     // state variables for drawing the sprite
     var startX = 0,
         startY = 0,
-        endX = (startX+spriteWidth)%spritesheet.width,
-        endY = (startY+spriteHeight)%spritesheet.height;
+        endX = startX+spriteWidth,
+        endY = startY+spriteHeight;
 
     // center the sprite on the canvas
     spritePositionX = canvas.width/2 - spriteWidth/2;
