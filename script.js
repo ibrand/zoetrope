@@ -53,10 +53,7 @@ document.getElementById("left").onmousemove = function (e){
 }
 
 document.getElementById("right").onmousemove = function (e){
-    var divWidth = window.innerWidth/2;
     direction = "backward";
-    // subtract x from the div width and you bring x back to 0 when it's in the right div
-    // then subtract it from the div width again and take the absolute value, and the higher numbers go towards the middle
-    timeBetweenSprites = Math.abs(divWidth*2-e.clientX);
+    // reverse the x coordinates once you pass the middle of the screen
+    timeBetweenSprites = Math.abs(window.innerWidth-e.clientX);
 }
-
