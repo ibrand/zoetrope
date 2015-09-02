@@ -6,28 +6,24 @@ var canvas = document.getElementById('canvas'),
 canvas.width = 400;
 canvas.height = 400;
 
-spritesPerRow = 4;
-
 var spritesheet = new Image();
 spritesheet.src = "images/MuybridgeSpritesheet.png";
+var spritesPerRow = 4;
 
-// onload waits until the image is loaded before trying to access its attributes
-spritesheet.onload = function() {
-    // divide both dimensions by spritesPerRow to get the width and height of the individual sprites
-    var spriteWidth = spritesheet.width/spritesPerRow;
-    var spriteHeight = spritesheet.height/spritesPerRow;
-
+function Sprite(spritesheet, spritesPerRow) {
+    this.spritesheet = spritesheet;
+    this.spritesPerRow = spritesPerRow;
+    spriteWidth = spritesheet.width/spritesPerRow;
+    spriteHeight = spritesheet.height/spritesPerRow;
+    spritePositionX = canvas.width/2 - spriteWidth/2;
+    spritePositionY = canvas.height/2 - spriteHeight/2;
     // state variables for drawing the sprite
-    var startX = 0,
-        startY = 0,
-        endX = startX+spriteWidth,
-        endY = startY+spriteHeight;
+    startX = 0;
+    startY = 0;
+    endX = startX+spriteWidth;
+    endY = startY+spriteHeight;
 
-    // center the sprite on the canvas
-    var spritePositionX = canvas.width/2 - spriteWidth/2,
-        spritePositionY = canvas.height/2 - spriteHeight/2;
-
-    var drawSprite = function() {
+    this.drawSprite = function(){
         ctx.drawImage(spritesheet, startX, startY, endX, endY, spritePositionX, spritePositionY, spriteWidth, spriteHeight);
         // move on to the next sprite
         if (direction === 'backward'){
@@ -41,11 +37,12 @@ spritesheet.onload = function() {
                 startY = (startY + spriteHeight)%spritesheet.height;
             }
         }
-        setTimeout(drawSprite, timeBetweenSprites);
+
     }
 
-    drawSprite();
 }
+var sprite = new Sprite(spritesheet, spritesPerRow);
+sprite.drawSprite();
 
 document.getElementById("left").onmousemove = function (e){
     direction = "forward";
