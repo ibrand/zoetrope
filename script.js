@@ -10,9 +10,11 @@ var spritesheet = new Image();
 spritesheet.src = "images/MuybridgeSpritesheet.png";
 var spritesPerRow = 4;
 
-function Sprite(spritesheet, spritesPerRow) {
+function Sprite(spritesheet, spritesPerRow, timeBetweenSprites) {
     this.spritesheet = spritesheet;
     this.spritesPerRow = spritesPerRow;
+    this.timeBetweenSprites = timeBetweenSprites;
+
     spriteWidth = spritesheet.width/spritesPerRow;
     spriteHeight = spritesheet.height/spritesPerRow;
     spritePositionX = canvas.width/2 - spriteWidth/2;
@@ -37,12 +39,14 @@ function Sprite(spritesheet, spritesPerRow) {
                 startY = (startY + spriteHeight)%spritesheet.height;
             }
         }
-
     }
-
+    this.animateSprite = function(){
+        this.drawSprite();
+        setTimeout(this.animateSprite, timeBetweenSprites);
+    }
 }
-var sprite = new Sprite(spritesheet, spritesPerRow);
-sprite.drawSprite();
+var sprite = new Sprite(spritesheet, spritesPerRow, timeBetweenSprites);
+sprite.animateSprite();
 
 document.getElementById("left").onmousemove = function (e){
     direction = "forward";
